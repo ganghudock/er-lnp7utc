@@ -16,17 +16,18 @@ wait_exit() {
 }
 
 chown -R www-data:www-data /var/www/
-systemctl daemon-reload
 
 if [ ! -s /etc/nginx/koi-win ]; then
     cp -r /etc/nginx-orig/* /etc/nginx/
 fi
 
 service nginx start
+service php7.2-fpm start
 
 wait_signal
 
 echo "Try to exit properly"
 service nginx stop
+service php7.2-fpm stop
 
 wait_exit "nginx"
