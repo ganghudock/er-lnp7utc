@@ -8,7 +8,7 @@ RUN apt-get update && \
     curl -L http://nginx.org/keys/nginx_signing.key | apt-key add - && \
     apt-get update && \
     apt-get install nginx -y && \
-    systemctl enable nginx && \
+    usermod -a -G www-data nginx && \
     echo "PROJECT_RUN_MODE=production" >> /etc/environment && \
     mkdir -p /etc/nginx/sites-enabled /etc/nginx/sites-available && \
     apt-get -y install apt-transport-https lsb-release ca-certificates && \
@@ -21,6 +21,8 @@ RUN apt-get update && \
     sed -i 's|^error_reporting.*|error_reporting = E_ALL \& ~E_DEPRECATED \& ~E_NOTICE \& ~E_STRICT|' /etc/php/7.2/fpm/php.ini && \
     sed -i 's|^short_open_tag.*|short_open_tag = On|' /etc/php/7.2/cli/php.ini && \
     sed -i 's|^error_reporting.*|error_reporting = E_ALL \& ~E_DEPRECATED \& ~E_NOTICE \& ~E_STRICT|' /etc/php/7.2/cli/php.ini && \
+    sed -i 's|^;listen.mode.*|listen.mode = 0660|' /etc/php/7.2/fpm/pool.d/www.conf && \
+    sed -i 's|^;pm.max_requests.*|pm.max_requests = 500|' /etc/php/7.2/fpm/pool.d/www.conf && \
     echo "apc.shm_size=64M" >> /etc/php/7.2/mods-available/apcu.ini && \
     ln -snf /usr/share/zoneinfo/UTC /etc/localtime && echo "UTC" > /etc/timezone && \
     mv /etc/nginx /etc/nginx-orig
