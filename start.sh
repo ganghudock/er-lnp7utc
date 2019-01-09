@@ -21,8 +21,8 @@ if [ ! -s /etc/nginx/koi-win ]; then
     cp -r /etc/nginx-orig/* /etc/nginx/
 fi
 
-service nginx start
-service php7.2-fpm start
+service nginx restart
+service php7.2-fpm restart
 
 wait_signal
 
