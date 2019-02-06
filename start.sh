@@ -22,12 +22,12 @@ if [ ! -s /etc/nginx/koi-win ]; then
 fi
 
 service nginx restart
-service php7.2-fpm restart
+service php7.0-fpm restart
 
 wait_signal
 
 echo "Try to exit properly"
 service nginx stop
-service php7.2-fpm stop
+service php7.0-fpm stop
 
 wait_exit "nginx"

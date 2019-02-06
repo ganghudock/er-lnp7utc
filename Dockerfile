@@ -14,16 +14,16 @@ RUN apt-get update && \
     apt-get -y install apt-transport-https lsb-release ca-certificates && \
     wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
     echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list && \
-    apt-get update && apt-get install php7.2-fpm php7.2-common php7.2-apcu php7.2-pgsql php7.2-curl php7.2-gd php7.2-imagick php7.2-json php7.2-mbstring php7.2-mysql php7.2-readline php7.2-soap php7.2-xml php7.2-zip php7.2-redis php7.2-intl -y && \
-    sed -i 's|^short_open_tag.*|short_open_tag = On|' /etc/php/7.2/fpm/php.ini && \
-    sed -i 's|^max_execution_time.*|max_execution_time = 300|' /etc/php/7.2/fpm/php.ini && \
-    sed -i 's|^max_input_time.*|max_input_time = 600|' /etc/php/7.2/fpm/php.ini && \
-    sed -i 's|^error_reporting.*|error_reporting = E_ALL \& ~E_DEPRECATED \& ~E_NOTICE \& ~E_STRICT|' /etc/php/7.2/fpm/php.ini && \
-    sed -i 's|^short_open_tag.*|short_open_tag = On|' /etc/php/7.2/cli/php.ini && \
-    sed -i 's|^error_reporting.*|error_reporting = E_ALL \& ~E_DEPRECATED \& ~E_NOTICE \& ~E_STRICT|' /etc/php/7.2/cli/php.ini && \
-    sed -i 's|^;listen.mode.*|listen.mode = 0660|' /etc/php/7.2/fpm/pool.d/www.conf && \
-    sed -i 's|^;pm.max_requests.*|pm.max_requests = 500|' /etc/php/7.2/fpm/pool.d/www.conf && \
-    echo "apc.shm_size=64M" >> /etc/php/7.2/mods-available/apcu.ini && \
+    apt-get update && apt-get install php7.0-fpm php7.0-common php7.0-apcu php7.0-pgsql php7.0-curl php7.0-gd php7.0-imagick php7.0-json php7.0-mbstring php7.0-mysql php7.0-readline php7.0-soap php7.0-xml php7.0-zip php7.0-redis php7.0-intl -y && \
+    sed -i 's|^short_open_tag.*|short_open_tag = On|' /etc/php/7.0/fpm/php.ini && \
+    sed -i 's|^max_execution_time.*|max_execution_time = 300|' /etc/php/7.0/fpm/php.ini && \
+    sed -i 's|^max_input_time.*|max_input_time = 600|' /etc/php/7.0/fpm/php.ini && \
+    sed -i 's|^error_reporting.*|error_reporting = E_ALL \& ~E_DEPRECATED \& ~E_NOTICE \& ~E_STRICT|' /etc/php/7.0/fpm/php.ini && \
+    sed -i 's|^short_open_tag.*|short_open_tag = On|' /etc/php/7.0/cli/php.ini && \
+    sed -i 's|^error_reporting.*|error_reporting = E_ALL \& ~E_DEPRECATED \& ~E_NOTICE \& ~E_STRICT|' /etc/php/7.0/cli/php.ini && \
+    sed -i 's|^;listen.mode.*|listen.mode = 0660|' /etc/php/7.0/fpm/pool.d/www.conf && \
+    sed -i 's|^;pm.max_requests.*|pm.max_requests = 500|' /etc/php/7.0/fpm/pool.d/www.conf && \
+    echo "apc.shm_size=64M" >> /etc/php/7.0/mods-available/apcu.ini && \
     ln -snf /usr/share/zoneinfo/UTC /etc/localtime && echo "UTC" > /etc/timezone && \
     mv /etc/nginx /etc/nginx-orig
 
